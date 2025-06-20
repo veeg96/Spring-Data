@@ -10,6 +10,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +26,7 @@ import lombok.Setter;
 public class Owner extends Base {
 
 	@Column(name = "first_name", nullable = false)
+
 	private String firstName;
 	@Column(name = "last_name", nullable = false)
 	private String lastName;

@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import com.abhishekvermaa10.dto.AverageAgeDTO;
 import com.abhishekvermaa10.dto.PetDTO;
 import com.abhishekvermaa10.entity.DomesticPet;
 import com.abhishekvermaa10.entity.Owner;
@@ -68,7 +69,7 @@ class PetServiceImplTest {
 		Double expectedAverageAge = 5.0;
 		when(petRepository.findAverageAgeOfPet()).thenReturn(Optional.of(expectedAverageAge));
 		// When
-		Double actualAverageAge = petServiceImpl.findAverageAgeOfPet();
+		AverageAgeDTO actualAverageAge = petServiceImpl.findAverageAgeOfPet();
 		// Then
 		assertThat(actualAverageAge).isEqualTo(expectedAverageAge);
 		verify(petRepository, times(1)).findAverageAgeOfPet();
@@ -80,7 +81,7 @@ class PetServiceImplTest {
 		Double expectedAverageAge = 0.0;
 		when(petRepository.findAverageAgeOfPet()).thenReturn(Optional.empty());
 		// When
-		Double actualAverageAge = petServiceImpl.findAverageAgeOfPet();
+		AverageAgeDTO actualAverageAge = petServiceImpl.findAverageAgeOfPet();
 		// Then
 		assertThat(actualAverageAge).isEqualTo(expectedAverageAge);
 		verify(petRepository, times(1)).findAverageAgeOfPet();

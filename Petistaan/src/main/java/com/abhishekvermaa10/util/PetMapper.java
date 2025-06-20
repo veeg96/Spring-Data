@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
+import com.abhishekvermaa10.dto.AverageAgeDTO;
 import com.abhishekvermaa10.dto.DomesticPetDTO;
 import com.abhishekvermaa10.dto.PetDTO;
 import com.abhishekvermaa10.dto.WildPetDTO;
@@ -34,5 +35,9 @@ public interface PetMapper {
 	@Mapping(source = "wildPet.owner", target = "ownerDTO")
 	@Mapping(target = "ownerDTO.petDTO", ignore = true)
 	WildPetDTO wildPetToWildPetDTO(WildPet wildPet);
+
+	default AverageAgeDTO getAverageAgeDTO(Double average){
+		return AverageAgeDTO.builder().averageAge(average).build();
+	}
 	
 }

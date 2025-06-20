@@ -3,6 +3,7 @@ package com.abhishekvermaa10.service.impl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.abhishekvermaa10.dto.AverageAgeDTO;
 import com.abhishekvermaa10.dto.PetDTO;
 import com.abhishekvermaa10.exception.PetNotFoundException;
 import com.abhishekvermaa10.repository.PetRepository;
@@ -31,9 +32,9 @@ public class PetServiceImpl implements PetService {
 	}
 	
 	@Override
-	public Double findAverageAgeOfPet() {
-		return petRepository.findAverageAgeOfPet()
-				.orElse(0.0);
+	public AverageAgeDTO findAverageAgeOfPet() {
+		return petRepository.findAverageAgeOfPet().map(d->petMapper.getAverageAgeDTO(d)).get();
+				
 	}
 	
 }

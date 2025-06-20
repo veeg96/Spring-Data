@@ -8,7 +8,7 @@ logging:
       max-file-size: 10MB
 spring:
   application:
-    name: Petistaan
+    name: Petistaan-test
   datasource:
     password: ${MYSQL_PASSWORD}
     url: jdbc:mysql://localhost:3306/petistaan
