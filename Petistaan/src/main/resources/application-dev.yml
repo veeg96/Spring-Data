@@ -1,7 +1,14 @@
+spring:
+  profiles:
+    active: dev
+
 logging:
   file:
-    name: ${logging.file.path}/${spring.application.name}.log
+    name: logs/Petistaan-dev.log
     path: logs
+  level:
+    com.abhishekvermaa10: DEBUG
+    org.springframework.web: DEBUG
   logback:
     rollingpolicy:
       file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}-%i.log
@@ -10,17 +17,23 @@ spring:
   application:
     name: Petistaan-dev
   datasource:
-    password: ${MYSQL_PASSWORD}
+    password: ${MYSQL_PASSWORD:}
     url: jdbc:mysql://localhost:3306/petistaan
-    username: ${MYSQL_USERNAME}
+    username: ${MYSQL_USERNAME:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
   sql:
     init:
       mode: never
 server:
+  port: 8080
   servlet:
     context-path: /petistaan
 springdoc:
@@ -32,9 +45,19 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, env, configprops
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 info:
   app:
-    name: ${spring.application.name}
-    message: hi people
+    name: Petistaan (Dev)
+    message: Development environment
+    profile: dev
+
+# Dummy transliterate API configuration for dev profile
+transliteration:
+  api:
+    url: dummy
+    enabled: false
 

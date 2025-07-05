@@ -26,14 +26,11 @@ public class DomesticPetDTO extends PetDTO {
 	@NotNull(message = "${pet.birth.date.required}")
 	@Schema(description = "birth date of domestic pet")
 	private LocalDate birthDate;
-	@Schema(description = "formatted birth date of domestic pet")
-	private String formattedDate;
 
 	@Builder
-	public DomesticPetDTO(int id, String name, Gender gender, PetType type, OwnerDTO ownerDTO, LocalDate birthDate, String formattedDate) {
+	public DomesticPetDTO(int id, String name, Gender gender, PetType type, OwnerDTO ownerDTO, LocalDate birthDate) {
 		super(id, name, gender, type, ownerDTO);
 		this.birthDate = birthDate;
-		this.formattedDate = formattedDate;
 	}
 
 }

@@ -1,7 +1,9 @@
 logging:
+  level:
+    com.abhishekvermaa10: INFO
+    org.springframework.web: WARN
   file:
-    name: ${logging.file.path}/${spring.application.name}.log
-    path: logs
+    name: logs/Petistaan-test.log
   logback:
     rollingpolicy:
       file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}-%i.log
@@ -11,16 +13,23 @@ spring:
     name: Petistaan-test
   datasource:
     password: ${MYSQL_PASSWORD}
-    url: jdbc:mysql://localhost:3306/petistaan
-    username: ${MYSQL_USERNAME}
+    url: jdbc:h2:mem:testdb
+    username: sa
+    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
   sql:
     init:
       mode: never
+  profiles:
+    active: test
 server:
+  port: 0  # Random port for tests
   servlet:
     context-path: /petistaan
 springdoc:
@@ -32,9 +41,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, env, configprops
+        include: health
 info:
   app:
-    name: ${spring.application.name}
-    message: hi people
+    name: Petistaan (Test)
+    message: Test environment
+    profile: test
 

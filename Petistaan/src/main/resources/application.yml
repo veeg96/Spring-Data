@@ -10,13 +10,18 @@ spring:
   application:
     name: Petistaan
   datasource:
-    password: ${MYSQL_PASSWORD}
+    password: ${MYSQL_PASSWORD:}
     url: jdbc:mysql://localhost:3306/petistaan
-    username: ${MYSQL_USERNAME}
+    username: ${MYSQL_USERNAME:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
   sql:
     init:
       mode: never
@@ -33,6 +38,9 @@ management:
     web:
       exposure:
         include: health, env, configprops
+  endpoint:
+    health:
+      show-details: always
 info:
   app:
     name: ${spring.application.name}

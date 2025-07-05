@@ -1,11 +1,8 @@
-logging:
-  file:
-    name: ${logging.file.path}/${spring.application.name}.log
-    path: logs
-  logback:
-    rollingpolicy:
-      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}-%i.log
-      max-file-size: 10MB
+spring:
+  profiles:
+    active: prod
+
+# Production-specific database configuration
 spring:
   application:
     name: Petistaan-prod
@@ -13,28 +10,58 @@ spring:
     password: ${MYSQL_PASSWORD}
     url: jdbc:mysql://localhost:3306/petistaan
     username: ${MYSQL_USERNAME}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: false
   sql:
     init:
       mode: never
+
+# Production-specific logging with rolling policy
+logging:
+  file:
+    name: logs/Petistaan-prod.log
+    path: logs
+  level:
+    com.abhishekvermaa10: INFO
+    org.springframework.web: WARN
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}-%d{yyyy-MM-dd}-%i.log
+      max-file-size: 10MB
+
+# Production-specific server configuration
 server:
+  port: 8080
   servlet:
     context-path: /petistaan
+
+# Production-specific actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, env
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# Production-specific info
+info:
+  app:
+    name: Petistaan (Production)
+    message: Production environment
+    profile: prod
+
 springdoc:
   api-docs:
     path: /apiDocumentation
   swagger-ui:
     path: /swagger.html
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, env, configprops
-info:
-  app:
-    name: ${spring.application.name}
-    message: hi people
 

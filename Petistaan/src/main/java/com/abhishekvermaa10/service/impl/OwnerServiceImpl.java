@@ -99,7 +99,7 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	private String dateTimeConverter(LocalDate birthDate) {
-		return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).format(birthDate);
+		return DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(birthDate);
 	}
 	 public String getMessage(String key) {
         return messageSource.getMessage(key,null, LocaleContextHolder.getLocale());
