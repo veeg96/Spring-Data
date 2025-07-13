@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "4e60eadb-8999-49ce-8d55-b2c1b17c6cc7",
+		"name": "Spring-data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13789303"
+	},
+	"item": [
+		{
+			"name": "owner apis",
+			"item": [
+				{
+					"name": "findall owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get owner with id 0",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners/0",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"me3\",\r\n        \"lastName\": \"me3\",\r\n        \"gender\": \"M\",\r\n        \"city\": \"city3\",\r\n        \"state\": \"state3\",\r\n        \"mobileNumber\": \"3767876562\",\r\n        \"emailId\": \"veeg3@ty.com\",\r\n        \"petDTO\": {\r\n            \"name\": \"pet3\",\r\n            \"gender\": \"F\",\r\n            \"type\": \"FISH\",\r\n            \"ownerDTO\": null,\r\n            \"birthDate\": \"2020-10-01\"      ,\"category\":\"Domestic\"\r\n              }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "wrong phone number",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"me4\",\r\n        \"lastName\": \"me4\",\r\n        \"gender\": \"M\",\r\n        \"city\": \"city4\",\r\n        \"state\": \"state4\",\r\n        \"mobileNumber\": \"75787651162\",\r\n        \"emailId\": \"veeg6@ty.com\",\r\n        \"petDTO\": {\r\n            \"name\": \"pet4\",\r\n            \"gender\": \"F\",\r\n            \"type\": \"FISH\",\r\n            \"ownerDTO\": null,\r\n            \"birthDate\": \"2020-10-01\"      ,\"category\":\"Domestic\"\r\n              }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "owner nt found",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "kn",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners/60",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners",
+								"60"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete owner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners/4",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update pet nam",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"petName\":\"veenaaa1a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/owners/2",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"owners",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pet apis",
+			"item": [
+				{
+					"name": "pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/pets/70",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"pets",
+								"70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pets Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://raspberrypi:8090/petistaan/pets",
+							"protocol": "http",
+							"host": [
+								"raspberrypi"
+							],
+							"port": "8090",
+							"path": [
+								"petistaan",
+								"pets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
