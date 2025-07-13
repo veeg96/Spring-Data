@@ -86,13 +86,13 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public Page<OwnerPetInfoDTO> findIdAndFirstNameAndLastNameAndPetNameOfPaginatedOwners(Pageable pageable) {
 		Page<Object[]> page = ownerRepository.findIdAndFirstNameAndLastNameAndPetName(pageable);
-		List<OwnerPetInfoDTO> list = page.stream().map(ls -> ownerPetInfoMapper.convOwnerPetInfoDTO(ls)).toList();
+		List<OwnerPetInfoDTO> list = page.stream().map(ownerPetInfoMapper::convOwnerPetInfoDTO).toList();
 		return new PageImpl<>(list,pageable,page.getTotalElements());
 	}
 	
 	private OwnerDTO formatDateField(OwnerDTO dto){
 		PetDTO petDto = dto.getPetDTO();
-		if(petDto != null && petDto instanceof DomesticPetDTO domesticPetDTO) {
+		if(petDto instanceof DomesticPetDTO domesticPetDTO) {
 			domesticPetDTO.setFormattedDate(dateTimeConverter(domesticPetDTO.getBirthDate()));
 		}
 		return dto;

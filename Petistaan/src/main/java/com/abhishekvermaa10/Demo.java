@@ -31,6 +31,6 @@ public class Demo  implements WebMvcConfigurer{
 		registry.addMapping("/**")
 		.allowedOrigins("*")
 		.allowedHeaders("*")
-		.allowedMethods("*");
+		.allowedMethods("GET", "POST", "PUT", "DELETE");
 	}
 }

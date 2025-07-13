@@ -33,7 +33,7 @@ spring:
     init:
       mode: never
 server:
-  port: 8080
+  port: 8090
   servlet:
     context-path: /petistaan
 springdoc:
@@ -58,6 +58,7 @@ info:
 # Dummy transliterate API configuration for dev profile
 transliteration:
   api:
-    url: dummy
+    url: "https://inputtools.google.com/request?itc={itcCode}&text={text}"
     enabled: false
+
 

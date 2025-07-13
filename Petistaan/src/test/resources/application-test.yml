@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: Petistaan-Test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+  servlet:
+    context-path: /petistaan
+
+server:
+  port: 0  # Random port for testing
+
+logging:
+  level:
+    com.abhishekvermaa10: DEBUG
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+springdoc:
+  api-docs:
+    path: /apiDocumentation
+  swagger-ui:
+    path: /swagger.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, env, configprops
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  app:
+    name: ${spring.application.name}
+    message: Test environment for Petistaan 
